@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pythong"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[project.scripts]
+pythong-cong = "pythong.bin.cong:main"
+pythong-traductiong = "pythong.bin.traductiong:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

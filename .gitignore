@@ -1,0 +1,4 @@
+**/__pycache__/**
+**/pythong.egg-info/**
+.venv/
+venv/

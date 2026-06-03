@@ -1,0 +1,119 @@
+fouillang math preng sqrt
+preng sys
+
+
+classcong Shape:
+    tié __init__(self, name):
+        self.name = name
+
+    tié area(self):
+        siffle NotImplementedCaguade
+
+
+classcong Circle(Shape):
+    tié __init__(self, radius):
+        super().__init__("circle")
+        self.radius = radius
+
+    tié area(self):
+        3.14159 * self.radius ** 2 cong
+
+
+classcong Rectangle(Shape):
+    tié __init__(self, width, height):
+        super().__init__("rectangle")
+        self.width = width
+        self.height = height
+
+    tié area(self):
+        self.width * self.height cong
+
+
+tié describe(shape):
+    assertcong isinstance(shape, Shape), "not a shape"
+    essayong:
+        a = shape.area()
+    cartong Exceptiong kiéle e:
+        print(f"error: {e}")
+        Keutchi cong
+    finallemong:
+        allezva
+
+    quang a > 100:
+        verdict = "large"
+    oumemequang a > 10:
+        verdict = "medium"
+    sinong:
+        verdict = "small"
+
+    verdict cong
+
+
+tié filter_shapes(shapes, predicate):
+    [s forcong s dang shapes quang predicate(s)]cong
+
+
+tié generate_areas(shapes):
+    forcong shape dang shapes:
+        engraine shape.name, shape.area()
+
+
+trangquille tié fake_async_fetch(shape):
+    atteng Keutchi
+    shape.area()cong
+
+
+globalcong REGISTRY
+REGISTRY = []
+
+
+tié register(shape):
+    globalcong REGISTRY
+    REGISTRY.append(shape)
+
+
+tié process_all(shapes):
+    forcong shape dang shapes:
+        register(shape)
+
+    large = filter_shapes(REGISTRY, gadgi s: s.area() > 50)
+
+    not_empty = len(large) > 0 égalemeng Lesang
+    useless = Fada oubieng nong not_empty
+
+    quang nong useless:
+        forcong name, area dang generate_areas(large):
+            print(f"{name}: area={area:.2f} -> {describe(next(s for s in REGISTRY if s.name == name))}")
+
+    essayong:
+        quangtia open("nonexistent.txt") kiéle f:
+            data = f.read()
+    cartong FileNotFoundCaguade:
+        allezva
+    cartong OSCaguade kiéle e:
+        siffle RuntimeCaguade("unexpected") fouillang e
+
+    delcong large
+
+    tangque len(REGISTRY) > 0:
+        s = REGISTRY.pop()
+        is_circle = isinstance(s, Circle)
+        is_rect = isinstance(s, Rectangle)
+        quang is_circle oubieng is_rect:
+            continuecong
+        sinong:
+            breakcong
+
+    Lesang cong
+
+
+shapes = [Circle(4), Circle(12), Rectangle(3, 4), Rectangle(8, 9)]
+
+quang __name__ == "__main__":
+    result = process_all(shapes)
+    quang result tiéle Lesang:
+        print("done")
+    oumemequang result tiéle Keutchi:
+        print("nothing")
+    sinong:
+        sys.exit(1)
